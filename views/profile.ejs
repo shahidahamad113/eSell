@@ -1,0 +1,32 @@
+<%-  include("./partials/header") %>
+
+<div class="container">
+       <div class="page">
+        <legend>Register Here</legend>
+             <form action="/<%=user._id %>?_method=PUT" method="POST">
+                <div class="form-group">
+                    <input class="form-control" type="text" name="username" id=""  value="<%= user.username %>" placeholder="username">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="firstName" id="" value="<%= user.firstName %>" placeholder="First Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="lastName" id=""  value="<%= user.lastName %>" placeholder="Last Name">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="contact" id=""  value="<%= user.contact %>" placeholder="Conatct No.">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" id="" value="<%= user.email %>" placeholder="Email Id:">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="avatar" id=""  value="<%= user.avatar %>" placeholder="Upload Your Picture">
+                </div>
+                <div class="form-group">
+                    <button  class="btn btn-block" class="try">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%-  include("./partials/footer") %>

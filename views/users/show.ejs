@@ -1,0 +1,97 @@
+<%-  include("../partials/header") %>
+<div class="container" style="width: 900px;">
+    <div class="row">
+        <div class="col-md-4">
+            <img src="<%=user.avatar %>" alt="user profile image"  class="img-rounded" alt="Cinque Terre" width="150" height="150" style="margin-left: 37px;margin-bottom: 30px;border-radius: 50%;box-shadow: 0 1px 3px 0 rgba(0, 0, 0,.15);border: 1px solid black;">
+        </div>
+        <div class="col-md-8">
+           <div class="row" style="margin-bottom: 20px;">
+               <div class="col-md-6">
+                <p style="display: inline;margin-right: 20px;font-size: 22px;"><%= user.username %></p>
+               </div>
+               <% if(currentUser.username===user.username){  %>
+                   <div class="col-md-6">
+                       
+                   </div>
+            <%   }else{  %>
+                <div class="col-md-6">
+                    <a href="/aucgrounds/<%= user.id %>/chat/new" type="button" class="btn btn-sm btn-primary" style="border-radius: 20px;"> CHAT WITH SELLER</a>    
+                   </div>
+              <% }  %>
+           </div>
+            <form action="/users/<%= user._id %>/follow" method="POST">
+                <div class="btn-group">
+                    <button class="btn btn-sm btn-primary" disabled="disabled" style="border-radius: 20px;">
+                        <i class="fas fa-users"></i> post <%= aucgrounds.length %>
+                </button>
+                    <% if (currentUser && user.follow.some(function (follow) {
+                        return follow.equals(currentUser._id)
+                    })) { %>
+                    <button class="btn btn-sm btn-primary"style="margin-left: 50px;border-radius: 20px;">
+                        <i class="fas fa-users"></i> followed <%= user.follow.length %>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-left: 50px;border-radius: 20px;" data-toggle="modal"
+                    data-target="#campgroundLikes">See followers
+            </button>
+                    <% } else { %>
+                    <button style="margin-left: 50px;border-radius: 20px;" class="btn btn-sm btn-secondary">
+                        <i class="fas fa-users"></i> follow <%= user.follow.length %>
+                    </button>
+                    <button type="button" class="btn btn-sm btn-primary" style="margin-left: 50px;border-radius: 20px;" data-toggle="modal"
+                    data-target="#campgroundLikes">See followers
+            </button>
+                    <% } %>
+                    
+                </div>
+            </form>
+            <h3 style="margin-right: 00px;font-weight: bolder;color: red;"><%= user.firstName + " " + user. lastName %></h3>
+        </div>
+    </div>
+    <hr>
+     <nav class="navbar navbar-inverse">
+        <div class="row" style="margin: 15px 15px 15px 15px;">
+            <% aucgrounds.forEach(function(aucground){ %>
+                <div class="col-md-4">
+                    <a href="/aucgrounds/<%= aucground.id %>"><img src="<%=aucground.image %>" alt=""  class="img-rounded" alt="Cinque Terre" width="260" height="250" style="margin-top: 17px;"></a>
+                </div>
+           <%  }) %>
+        </div>
+    </div>
+     </nav>
+    <!-- Campground Likes Modal -->
+<div id="campgroundLikes" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>followed by:</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <% user.follow.forEach(function(follow) { %>
+                        <tr>
+                            <td><img src="<%=follow.avatar %>" alt="" style="border-radius: 50%;" width="35px" height="35px"> <%= follow.username %></td>
+                        </tr>
+                    <% }); %>
+                    <% if (user.follow.length === 0) { %>
+                        <tr>
+                            <td><em>No followers.</em></td>
+                        </tr>
+                    <% } %>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<%-  include("../partials/footer") %>

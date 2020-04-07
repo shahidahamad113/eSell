@@ -1,0 +1,42 @@
+<%-  include("./partials/header") %>
+
+<div class="container">
+    <div class="row">
+       <div class="page">
+        <legend>Register Here</legend>
+             <form action="/register" method="POST" enctype="multipart/form-data">
+                <div class="form-group" >
+                    <input class="form-control"  type="text" name="username" id="" placeholder="username" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="password" name="password" id="" placeholder="password" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="firstName" id="" placeholder="first Name" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="lastName" id="" placeholder="last Name" required>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="contact" id="" placeholder="cantact">
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="email" name="email" id="" placeholder="E-mail" required>
+                </div>
+                <div class="file-field input-field">
+                    <div class="btn grey" class="form-group">
+                      <span>File</span>
+                      <input class="form-control" name="image" type="file">
+                    </div>
+                  </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="admincode" id="" placeholder="Admin Code" >
+                </div>
+                <div class="form-group">
+                    <button  class="btn btn-block" class="try">Register Now</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%-  include("./partials/footer") %>

@@ -1,0 +1,62 @@
+<%-  include("../partials/header") %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+                <nav class="navbar navbar-inverse">
+                    <form action="" class="form-inline" style="color: white;">
+                        <div class="form-group" style="margin-top: 7px;">
+                            <label for="" ><span style="margin-left: 8px;margin-right: 19px;">INBOX</span></label>
+                            <input type="text" name="search" placeholder="Search person" class="form-control" style="background-color: #232323;color: #e0e0e0;">
+                            <input type="submit" value="search" class="btn btn-primary"  style="background-color: #232323;color: #e0e0e0;">
+                        </div>
+                    </form>
+                  </nav>
+                  <div class="well" style="background-color:  #232323;">
+                    <% seller.chats.forEach(function(chat){ %>
+                        <form  class="form group"  data-toggle="collapse" href="#collapseComment" aria-expanded="false" aria-controls="collapseComment">
+                            <div class="form-control">
+                            <strong style="color:white;"><%=chat.author.username %></strong>
+                           </a>
+                        </div>
+                      <br>
+                    </form>
+                 <% }) %>
+             </div>
+        </div>
+        <div class="col-md-8">
+                <nav class="navbar navbar-inverse">
+                    <form action="" class="form-inline" style="color: white;">
+                        <label for="" style="margin-top: 12px;"><h3><%=seller.author.firstName +" " + seller.author.lastName %></h3></label>
+                        <img src="<%=seller.author.avatar %>" alt="" srcset="" style="border-radius: 50%; margin: 10px 10px 10px;" width="70px" height="70px" class="pull-left">
+                    </form>
+                </nav> 
+                <form action="/aucgrounds/<%=seller._id %>/chat" method="POST">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="chat[text]" id="" placeholder="text">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                    </div>
+                </form>
+                <% if(seller.chats.length===0){ %>
+                    <em style="color: #232323;">No Commments yet</em>
+               <% } %>
+               <div class="collapse" id="collapseComment">
+                <div class="well" style="background-color: #232323;">
+                    <% seller.chats.forEach(function(chat){ %>
+                        <div class="row">
+                            <div class="col-md-12">
+                               <strong style="color: lightblue;"><%=chat.author.username %></strong>
+                                <span class="pull-right" style="color: #e0e0e0;"><%=moment(chat.createdAt).fromNow() %></span>
+                                <p>
+                                    <%= chat.text %>
+                                   </p>
+                            </div>
+                        </div>    
+                    <% }) %>
+                </div>
+            </div>
+             </div>
+        </div>
+</div>
+<%-  include("../partials/footer") %>

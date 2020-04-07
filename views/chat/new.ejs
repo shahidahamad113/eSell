@@ -1,0 +1,84 @@
+<%-  include("../partials/header") %>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+        <div class="col-md-4">
+            <img src="<%=currentUser.avatar %>" alt="" style="border-radius: 50%;margin: 10px 10px 10px 10px;" width="90px" height="90px">
+        </div>
+        <div class="col-md-8">
+            <em><h1 style="margin-right: 700px;color: red;font-size: 40px;"><%=currentUser.username %></h1></em>
+        </div>
+    </nav>
+    <div class="row">
+        <div class="col-md-4">
+                <nav class="navbar navbar-inverse">
+                    <form action="" class="form-inline" style="color: white;">
+                        <div class="form-group" style="margin-top: 7px;">
+                            <label for="" ><span style="margin-left: 8px;margin-right: 19px;">INBOX</span></label>
+                            <input type="text" name="search" placeholder="Search person" class="form-control" style="background-color: #232323;color: #e0e0e0;">
+                            <input type="submit" value="search" class="btn btn-primary"  style="background-color: #232323;color: #e0e0e0;">
+                        </div>
+                    </form>
+                </nav>
+                <% MyData.messages.forEach(function(message){ %>
+               <nav class="navbar navbar-inverse">
+                <form  class="form group" class="inline" style="color: #e0e0e0;">
+                    <div class="form-group" style="margin-top: 7px;margin-left: 20px;height: 13px;">
+                        <img src="<%=message.avatar %>" alt="" style="border-radius: 50%;margin-right: 5px;" width="40px" height="40px">
+                    <a href="/aucgrounds/<%= message.author.id %>/chat/new" type="button"><strong style="color:white;"><%=message.username %></strong></a>
+                   </a>
+                </div>
+              <br>
+            </form>
+               </nav>
+                  <% }) %>
+        </div>
+        <div class="col-md-8">
+              <%  if(currentUser.username===seller.username){ %>
+                    <h1 style="text-align:center;">Here is your inbox</h1>
+              <%  }else{  %>
+                <nav class="navbar navbar-inverse">
+                    <form action="" class="form-inline" style="color: white;">
+                        <label for="" style="margin-top: 12px;"><h3><%=seller.username %></h3></label>
+                        <img src="<%=seller.avatar %>" alt="" srcset="" style="border-radius: 50%; margin: 10px 10px 10px;" width="70px" height="70px" class="pull-left">
+                    </form>
+                </nav>
+                <nav class="navbar navbar-inverse">
+                   <div style="margin: 20px 20px 20px 20px;">
+                    <% MyData.messages.forEach(function(message){  %>
+                        <%   if(seller.username===message.username){  %>
+                           <% var count=0 %>
+                           <% messageNew.forEach(function(loop){ %>
+                               <%   if(loop.username===message.username && count<1 &&loop.newName===message.newName){ %>
+                                    <% loop.Room.forEach(function(element){ %>
+                                       <% if(element.username===currentUser.username){  %>
+                                        <div class="well well-sm" style="background-color:#444;border-radius: 20px;color: white;margin-right:300px;width: fit-content;">
+                                           <p style="text-align: center;font-size: 20px;"> <%=element.text %></p>
+                                        </div>
+                                      <%  }else{ %>
+                                        <div class="well well-sm" style="background-color:red;border-radius: 20px;color: white;margin-left: 300px;margin-bottom: 15px;width: fit-content;">
+                                            <p style="text-align: center;font-size: 20px;" > <%=element.text %></p>
+                                        </div>
+                                      <% }  %>
+                                 <%   })  %>
+                                  <% count=1 %>
+                                  <%   }else{  %>
+                                      <% count=0 %>
+                                <%  } %>
+                            <%  }) %>
+                         <%  }  %>
+                    <%   }) %>
+                           <form action="/aucgrounds/<%=seller._id %>/chat" method="POST">
+                               <div class="form-group">
+                                   <input class="form-control" type="text" name="text" id="" value="<%=seller.messages.text %>">
+                               </div>
+                               <div class="form-group">
+                                   <button class="btn btn-block">Submit</button>
+                               </div>
+                           </form>>
+                     <%  } %>
+                       </div>
+                   </div>
+                </nav>
+            </div>
+</div>
+<%-  include("../partials/footer") %>
