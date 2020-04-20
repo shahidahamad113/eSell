@@ -22,10 +22,9 @@ update your profile,password reset
 
 ![Screenshot (629)](https://user-images.githubusercontent.com/57061366/79704962-79b67d80-82d1-11ea-9d63-856c70703508.png)
 
-# user profile
+# selller profile
 
-
-![Screenshot (631)](https://user-images.githubusercontent.com/57061366/79704987-8e931100-82d1-11ea-9ef2-4c149bd20c8b.png)
+![Screenshot (636)](https://user-images.githubusercontent.com/57061366/79705277-bcc52080-82d2-11ea-9eb5-e2aab6a05403.png)
 
 # seller customer
 
