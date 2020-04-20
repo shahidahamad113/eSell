@@ -1,4 +1,4 @@
-var express       =require("express"),
+const express       =require("express"),
     app           =express(),
     path          =require("path"),
     server        =require("http").createServer(app),
@@ -15,9 +15,9 @@ var express       =require("express"),
     moment        =require("moment");
     
 
-var port=process.env.PORT || 3000;
+const port=process.env.PORT || 3000;
 //requiring routes
-var commentRoutes =require("./routes/comments"),
+const commentRoutes =require("./routes/comments"),
     chatRoutes    =require("./routes/chat"),
     aucgroundRoutes=require("./routes/aucgrounds"),
     indexRoutes     =require("./routes/index");
