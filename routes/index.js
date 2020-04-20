@@ -2,6 +2,7 @@ var express=require("express");
 var router =express.Router();
 var passport=require("passport");
 var User=require("../models/user");
+var notification=require("../models/notification");
 var Aucground=require("../models/aucground");
 var message=require("../models/message");
 var comment=require("../models/comment");
@@ -248,7 +249,19 @@ router.post("/users/:id/follow", middleware.isLoggedIn, function (req, res) {
                console.log(err);
                return res.redirect("back");
            }
-           return res.redirect("back");
+           newNotification={
+            text:"liked",
+            user:req.user._id
+        };
+        notification.create(newNotification,function(err,done){
+            if(err){
+                console.log(err);
+            }else{
+               foundaucground.Notification.push(done);
+               foundaucground.save();
+               return res.redirect("back");
+            }
+        })
        });
    });
 });

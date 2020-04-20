@@ -34,6 +34,7 @@ router.post("/chat/",middleware.isLoggedIn,function(req,res){
         req.flash("error","You Cant text Yourself");
         req.redirect("back");
     }
+
    user.findById(req.params.id).populate("messages").exec(function(err,found){
        if(err){
            console.log(err);

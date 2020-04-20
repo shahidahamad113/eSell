@@ -2,8 +2,11 @@ var express=require("express");
 var router =express.Router();
 var aucground=require("../models/aucground");
 var middleware=require("../middleware");
+var user=require("../models/user");
+var notification=require("../models/notification");
 var multer = require('multer');
 var path = require('path');
+var notifications=require('../models/notification');
 var storage = multer.diskStorage({
     destination: './public/uploads/',
     filename: function(req, file, cb){
@@ -47,13 +50,13 @@ router.get("/", function(req, res){
                     if(allaucgrounds.length < 1) {
                         noMatch = "No  match found, please try again.";
                     }
-                    res.render("aucground/indexx", {
-                        aucground: allaucgrounds,
-                        current: pageNumber,
-                        pages: Math.ceil(count / perPage),
-                        noMatch: noMatch,
-                        search: req.query.search
-                    });
+                   res.render("aucground/indexx", {
+                    aucground: allaucgrounds,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage),
+                    noMatch: noMatch,
+                    search: req.query.search
+                });
                 }
             });
         });
@@ -62,14 +65,14 @@ router.get("/", function(req, res){
             aucground.count().exec(function (err, count) {
                 if (err) {
                     console.log(err);
-                } else {      
-                    res.render("aucground/indexx", {
-                        aucground: allaucgrounds,
-                        current: pageNumber,
-                        pages: Math.ceil(count / perPage),
-                        noMatch: noMatch,
-                        search: false
-                    });
+                } else {  
+                   res.render("aucground/indexx", {
+                    aucground: allaucgrounds,
+                    current: pageNumber,
+                    pages: Math.ceil(count / perPage),
+                    noMatch: noMatch,
+                    search: false
+                });
                 }
             });
         });
@@ -131,7 +134,25 @@ router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
                 console.log(err);
                 return res.redirect("/aucgrounds");
             }
-            return res.redirect("/aucgrounds/" + foundaucground._id);
+            user.findById(foundaucground.author.id,function(err,Data){
+                if(err){
+                    console.log(err);
+                }else{
+                    newNotification={
+                        text:"liked",
+                        user:req.user._id
+                    };
+                    notification.create(newNotification,function(err,done){
+                        if(err){
+                            console.log(err);
+                        }else{
+                            Data.Notification.push(done);
+                            Data.save();
+                            return res.redirect("/aucgrounds/" + foundaucground._id);
+                        }
+                    })
+                }
+            })
         });
     });
  });

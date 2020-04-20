@@ -50,13 +50,32 @@
                            <% messageNew.forEach(function(loop){ %>
                                <%   if(loop.username===message.username && count<1 &&loop.newName===message.newName){ %>
                                     <% loop.Room.forEach(function(element){ %>
-                                       <% if(element.username===currentUser.username){  %>
-                                        <div class="well well-sm" style="background-color:#444;border-radius: 20px;color: white;margin-right:300px;width: fit-content;">
-                                           <p style="text-align: center;font-size: 20px;"> <%=element.text %></p>
+                                       <% if(element.username===currentUser.username){%>
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="well well-sm" style="background-color:#444;border-radius: 20px;color: white;width: fit-content;float: right;">
+                                                    <p style="text-align: center;font-size: 20px;display: inline;"> <%=element.text %></p>
+                                                    <%  if(element.read===false){  %>
+                                                     <i class="fas fa-check"></i>
+                                                <% }else{  %>
+                                                 <i class="fas fa-check-double"></i>
+                                               <% }%>
+                                               <h5 class="pull-right"> <%=moment(element.createdAt).fromNow() %></h5>
+                                                </div>
+                                            </div>
                                         </div>
                                       <%  }else{ %>
-                                        <div class="well well-sm" style="background-color:red;border-radius: 20px;color: white;margin-left: 300px;margin-bottom: 15px;width: fit-content;">
-                                            <p style="text-align: center;font-size: 20px;" > <%=element.text %></p>
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <div class="well well-sm" style="background-color:red;border-radius: 20px;color: white;margin-bottom: 15px;width: fit-content;">
+                                                    <h6 style="text-align: center;font-size: 20px;" > <%=element.text %></p>
+                                                    <h5> <%=moment(element.createdAt).fromNow() %></h5>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-4">
+                                            </div>
                                         </div>
                                       <% }  %>
                                  <%   })  %>
@@ -69,10 +88,7 @@
                     <%   }) %>
                            <form action="/aucgrounds/<%=seller._id %>/chat" method="POST">
                                <div class="form-group">
-                                   <input class="form-control" type="text" name="text" id="" value="<%=seller.messages.text %>">
-                               </div>
-                               <div class="form-group">
-                                   <button class="btn btn-block">Submit</button>
+                                   <input class="form-control" type="text" name="text" id="" placeholder="Type Your Message................" style="display: inline;width: 640px;"> <button class="btn ">Reply</button>
                                </div>
                            </form>>
                      <%  } %>

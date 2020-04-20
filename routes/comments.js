@@ -2,6 +2,8 @@ var express=require("express");
 var router =express.Router({mergeParams:true});
 var aucground=require("../models/aucground");
 var Comment=require("../models/comment");
+var user=require("../models/user");
+var notification=require("../models/notification");
 var middleware=require("../middleware");
 router.get("/new",middleware.isLoggedIn,function(req,res){   
     aucground.findById(req.params.id,function(err,aucground){
@@ -31,8 +33,26 @@ router.post("/",middleware.isLoggedIn,function(req,res){
                 comment.save();
                 aucground.comments.push(comment);
                 aucground.save();
-                req.flash("error","Successfully added comment");
-                res.redirect("/aucgrounds/"+aucground._id);
+                user.findById(aucground.author.id,function(err,Data){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        newNotification={
+                            text:"commented",
+                            user:req.user._id
+                        };
+                        notification.create(newNotification,function(err,done){
+                            if(err){
+                                console.log(err);
+                            }else{
+                                Data.Notification.push(done);
+                                Data.save();
+                                req.flash("error","Successfully added comment");
+                                res.redirect("/aucgrounds/"+aucground._id);
+                            }
+                        })
+                    }
+                })
             }
         });
        }

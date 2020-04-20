@@ -24,6 +24,12 @@ var UserSchema=new mongoose.Schema({
             ref:"User"
         }
     ],
+    Notification:[
+        {
+            type:mongoose.Types.ObjectId,
+            ref:"notification"
+        }
+    ],
     bio:String
 });
 UserSchema.plugin(passportLocalMongoose);

@@ -60,15 +60,7 @@
                         <span>Notifications</span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
-                           <p>second Notification</p>
-                        </li>
-                        <li>
-                            <p>first Notification</p>
-                        </li>
-                        <li>
-                           <p>Third Notification</p>
-                        </li>
+                      <li><p> <%=currentUser.Notification.length %></p></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -80,10 +72,8 @@
                            <a href="/aucgrounds/<%= currentUser._id %>/chat/new"><i class="fas fa-envelope-square"></i></a>
                         </li>
                         <li>
-                            <p>user2</p>
-                        </li>
-                        <li>
-                           <p>user3</p>
+                            
+                            <p><%=currentUser.messages.length %></p>
                         </li>
                     </ul>
                 </li>
@@ -99,7 +89,11 @@
                                     <div class="row">
                                         <div class="col-lg-4">
                                             <p class="text-center" style="color: white;">
+                                              <%  if(!currentUser.avatar){  %>
                                                 <span class="glyphicon glyphicon-user icon-size"></span>
+                                             <%   }else{ %>
+                                                    <img src="<%=currentUser.avatar %>" alt="" width="80px" height="90px" style="border-radius: 10px;">
+                                             <%   }  %>
                                             </p>
                                         </div>
                                         <div class="col-lg-8">
@@ -113,6 +107,10 @@
                                     </div>
                                 </div>
                             </div>
+                            </li>
+                            <li>
+                                <a href="/aucgrounds/<%= currentUser._id %>/chat/new">My Inbox
+                                <i class="fas fa-envelope-square pull-right"></i></a>
                             </li>
                             <li>
                                 <a href="/<%=currentUser._id %>/profile" class="hov">
