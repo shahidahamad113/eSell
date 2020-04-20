@@ -1,15 +1,23 @@
-# eSell
-Selling and Purchasing Website
+# About The Project
+This is Selling and Purchasing Website.Websites contains the following features
+Sell Your Product
+Purchase Product
+You can even do Private chat with seller
+You can line and comment on item
+update your profile
+reset password
 
+#  HTML
+#  CSS
+#  Jquery
+#  Javascript
+#  Express
+#  MongoDB
+#  EJS
 do npm install
 
 
 # you can even do private chat with seller and if you want to know new update from specific seller  just follow them
-
-update your profile,password reset
-
- made using node js express mongoDB for backend
- for frontend made using css html bootstrap javascript jQuery
 
 # SCREENSHOTS
 
