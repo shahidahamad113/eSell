@@ -1,20 +1,26 @@
 # About The Project
 This is Selling and Purchasing Website.Websites contains the following features<br />
-Sell Your Product
-Purchase Product
-You can even do Private chat with seller
-You can line and comment on item
-update your profile
-reset password
+<ul>
+<li>Sell Your Product</li>
+<li> Purchase Product</li>
+<li> You can even do Private chat with seller</li>
+<li> You can like and comment on item</li>
+<li> update your profile</li>
+<li> reset password</li>
+  </ul>
+  
 
 # Built with
-  HTML
-  CSS
-  Jquery
-  Javascript
-  Express
-  MongoDB
-  EJS
+<ul>
+  <li>HTML</li>
+  <li>CSS</li>
+  <li>jQuery</li>
+  <li>JavaScript</li>
+  <li>Express</li>
+  <li>MongoDB</li>
+  <li>EJS</li>
+  </li>
+ 
 do npm install
 
 
