@@ -1,10 +1,15 @@
 # eSell
 Selling and Purchasing Website
 
+do npm install
+
+
 # you can even do private chat with seller and if you want to know new update from specific seller  just follow them
 
-# made using node js express mongoDB for backend
-# for frontend made using css html bootstrap javascript jQuery
+update your profile,password reset
+
+ made using node js express mongoDB for backend
+ for frontend made using css html bootstrap javascript jQuery
 
 # SCREENSHOTS
 
