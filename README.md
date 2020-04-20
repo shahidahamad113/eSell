@@ -24,9 +24,9 @@ This is Selling and Purchasing Website.Websites contains the following features<
 do npm install
 
 
-# you can even do private chat with seller and if you want to know new update from specific seller  just follow them
+### you can even do private chat with seller and if you want to know new update from specific seller  just follow them
 
-# SCREENSHOTS
+## SCREENSHOTS
 
 # Home page
 
@@ -67,3 +67,6 @@ do npm install
 
 ![Screenshot (635)](https://user-images.githubusercontent.com/57061366/79705069-ef224e00-82d1-11ea-95a6-d707c86b98ac.png)
 
+
+## Author
+[Shahid Afridi](https://github.com/shahidahamad113)
